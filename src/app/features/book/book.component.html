@@ -1,0 +1,12 @@
+<h2>Seçilen Üye: {{loggedMember?.name}}</h2>
+
+<h1>Kitaplar</h1>
+
+<ul>
+  <li *ngFor="let book of books">
+    {{ book.title }} - {{ book.author }}
+    <button type="button" (click)="rentBook(book)">Kirala</button>
+    <button type="button" (click)="deliverBook(book)">Teslim Et</button>
+  </li>
+</ul>
+<br>

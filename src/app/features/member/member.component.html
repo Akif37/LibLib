@@ -1,0 +1,7 @@
+<h1>Üyeler</h1>
+<ul>
+  <li *ngFor="let member of members">
+    {{ member.name }} {{ member.surName }} ({{ member.email }})
+    <button type="button" (click)="selectMember(member)">Seç</button>
+  </li>
+</ul>
