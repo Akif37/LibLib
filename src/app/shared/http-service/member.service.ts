@@ -10,6 +10,7 @@ export class MemberService {
   private resourceUri = 'api/v1/members';
 
   constructor(private http: HttpClient) { }
+
   getMembers(): Observable<HttpResponse<IMemberModel[]>> {
     return this.http.get<IMemberModel[]>(`${this.resourceUri}`, { observe: 'response' });
   }

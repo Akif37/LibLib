@@ -1,3 +1,11 @@
-<h2>Seçilen Üye: {{loggedMember?.name}}</h2>
+<h2>Seçilen Üye: <a style="color:red">{{loggedMember?.name}}</a></h2>
 
-<h3>Seçilen Kitap: {{registeredBook?.title}}</h3>
+<h3>Seçilen Kitap: <a style="color:red">{{registeredBook?.title}}</a></h3>
+
+<form>
+  <label for="deliverydate">Son Teslim Tarihi (Tarih):</label>
+  <input type="date" id="deliverydate" name="deliverydate"
+         [(ngModel)]="deliveryDate"
+         style="background-color: lightyellow; border: 2px solid darkred; font-size: 16px;">
+  <button type="button" (click)="rent()">Kayıt Et</button>
+</form>
