@@ -1,3 +1,7 @@
-<h2>Seçilen Üye: {{loggedMember?.name}}</h2>
+<h2>Seçilen Üye: <a style="color:green">{{loggedMember?.name}}</a></h2>
 
-<h3>Seçilen Kitap: {{registeredBook?.title}}</h3>
+<h3>Seçilen Kitap: <a style="color:green">{{registeredBook?.title}}</a></h3>
+
+<p *ngIf="deliveryDate">Teslim Tarihi: {{deliveryDate | date: 'dd/MM/yyyy'}}</p>
+
+<button type="button" (click)="deliver()">Teslim Et</button>

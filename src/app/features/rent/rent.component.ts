@@ -31,7 +31,7 @@ export class RentComponent implements OnInit {
     if (this.loggedMember?.id && this.registeredBook?.id && this.deliveryDate){
       this.rentService.rent(this.loggedMember.id, this.registeredBook.id, this.deliveryDate)
         .subscribe((res: HttpResponse<void>) => {
-          if (res.body) {
+          if (res.ok) {
             alert("kiralama yapıldı.");
           }
       });

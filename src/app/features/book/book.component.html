@@ -7,6 +7,19 @@
     {{ book.title }} - {{ book.author }}
     <button type="button" (click)="rentBook(book)">Kirala</button>
     <button type="button" (click)="deliverBook(book)">Teslim Et</button>
+    <button type="button" (click)="deleteBook(book.id)">Sil</button>
   </li>
 </ul>
-<br>
+<h3>Yeni Kitap Ekle</h3>
+<form (ngSubmit)="addBook()">
+  <label for="title">Başlık:</label>
+  <input id="title" [(ngModel)]="newBook.title" name="title" required>
+
+  <label for="author">Yazar:</label>
+  <input id="author" [(ngModel)]="newBook.author" name="author" required>
+
+  <label for="bookType">Kitap Türü:</label>
+  <input id="bookType" [(ngModel)]="newBook.bookType" name="title" required>
+
+  <button type="submit">Ekle</button>
+</form>
