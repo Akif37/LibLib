@@ -1,0 +1,14 @@
+<h2>Kitap Güncelle</h2>
+
+<form (ngSubmit)="updateBook()">
+  <label for="title">Başlık:</label>
+  <input id="title" [(ngModel)]="book.title" name="title" required>
+
+  <label for="author">Yazar:</label>
+  <input id="author" [(ngModel)]="book.author" name="author" required>
+
+  <label for="bookType">Kitap Türü:</label>
+  <input id="bookType" [(ngModel)]="book.bookType" name="bookType" required>
+
+  <button type="submit">Güncelle</button>
+</form>

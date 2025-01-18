@@ -9,6 +9,7 @@ import {MemberComponent} from './member/member.component';
 import {RentComponent} from './rent/rent.component';
 import {DeliverComponent} from "./deliver/deliver.component";
 import {FormsModule} from "@angular/forms";
+import { BookUpdateComponent } from './book/book-update/book-update.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {FormsModule} from "@angular/forms";
     BookComponent,
     MemberComponent,
     RentComponent,
-    DeliverComponent
+    DeliverComponent,
+    BookUpdateComponent
   ],
   imports: [
     FormsModule,

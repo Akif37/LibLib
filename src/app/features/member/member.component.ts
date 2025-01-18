@@ -3,7 +3,6 @@ import {MemberService} from "../../shared/http-service/member.service";
 import {HttpResponse} from "@angular/common/http";
 import {IMemberModel} from "../../shared/model/member.model";
 import {Router} from "@angular/router";
-import {MemberLoginService} from "../../shared/service/member-login.service";
 
 @Component({
   selector: 'app-members',
@@ -15,7 +14,6 @@ export class MemberComponent implements OnInit {
 
   constructor(
     private memberService: MemberService,
-    private memberLoginService: MemberLoginService,
     private router: Router
   ) { }
 
@@ -28,7 +26,11 @@ export class MemberComponent implements OnInit {
 
   }
   selectMember(selectedMember: IMemberModel) {
-    this.memberLoginService.login(selectedMember);
-    this.router.navigate(['/books'],  );
+    this.router.navigate(['/books'], {
+      queryParams: {
+        memberId: selectedMember.id,
+      }
+    });
   }
+
 }

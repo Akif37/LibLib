@@ -1,5 +1,3 @@
-<h2>Seçilen Üye: {{loggedMember?.name}}</h2>
-
 <h1>Kitaplar</h1>
 
 <ul>
@@ -8,8 +6,11 @@
     <button type="button" (click)="rentBook(book)">Kirala</button>
     <button type="button" (click)="deliverBook(book)">Teslim Et</button>
     <button type="button" (click)="deleteBook(book.id)">Sil</button>
+    <button type="button" (click)="updateBook(book.id)">Güncelle</button>
   </li>
 </ul>
+
+
 <h3>Yeni Kitap Ekle</h3>
 <form (ngSubmit)="addBook()">
   <label for="title">Başlık:</label>

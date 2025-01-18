@@ -1,12 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {IBookModel} from "../../shared/model/book.model";
-import {Router} from "@angular/router";
 import {BookService} from "../../shared/http-service/book.service";
 import {HttpResponse} from "@angular/common/http";
-import {BookRegisterService} from "../../shared/service/book-register.service";
+import {ICreateBookModel} from "../../shared/model/create-book.model";
+import {ActivatedRoute, Router} from '@angular/router';
 import {IMemberModel} from "../../shared/model/member.model";
-import {MemberLoginService} from "../../shared/service/member-login.service";
-import {INewBookModel} from "../../shared/model/newbook.model";
 
 @Component({
   selector: 'app-books',
@@ -16,19 +14,22 @@ import {INewBookModel} from "../../shared/model/newbook.model";
 export class BookComponent implements OnInit {
 
   books: IBookModel[] = [];
-  loggedMember: IMemberModel | undefined;
-  newBook: INewBookModel = {title: '', author: '', bookType: ''};
+  newBook: ICreateBookModel = {title: '', author: '', bookType: ''};
+  memberId: number | undefined;
 
   constructor(
     private bookService: BookService,
-    private bookRegisterService: BookRegisterService,
-    private memberLoginService: MemberLoginService,
-    private router: Router
-  ) {
-  }
+    private router: Router,
+    private route: ActivatedRoute
+) {}
 
   ngOnInit(): void {
-    this.loggedMember = this.memberLoginService.getLoggedMember();
+    this.route.queryParams.subscribe((params) => {
+      if (params['memberId']) {
+        this.memberId = +params['memberId'];
+      }
+    });
+
     this.bookService.getBooks().subscribe((res: HttpResponse<IBookModel[]>) => {
       if (res.body) {
         this.books = res.body;
@@ -37,13 +38,21 @@ export class BookComponent implements OnInit {
   }
 
   rentBook(selectedBook: IBookModel) {
-    this.bookRegisterService.register(selectedBook);
-    this.router.navigate(['/rent'],);
+    this.router.navigate(['/rent'], {
+      queryParams: {
+        memberId: this.memberId,
+        bookId: selectedBook.id
+      }
+    });
   }
 
   deliverBook(selectedBook: IBookModel) {
-    this.bookRegisterService.register(selectedBook);
-    this.router.navigate(['/deliver'],);
+    this.router.navigate(['/deliver'],{
+      queryParams: {
+        memberId: this.memberId,
+        bookId: selectedBook.id
+      }
+    });
   }
 
   addBook(): void {
@@ -71,6 +80,10 @@ export class BookComponent implements OnInit {
           }
       });
     }
+  }
+
+  updateBook(bookId: number): void {
+    this.router.navigate(['/books/' + bookId + '/update']);
   }
 }
 

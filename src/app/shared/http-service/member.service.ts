@@ -15,4 +15,8 @@ export class MemberService {
     return this.http.get<IMemberModel[]>(`${this.resourceUri}`, { observe: 'response' });
   }
 
+  getMember(memberId: number): Observable<HttpResponse<IMemberModel>> {
+    return this.http.get<IMemberModel>(`${this.resourceUri}/${memberId}`, { observe: 'response' });
+  }
+
 }
